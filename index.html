@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上海沪嘉讯网络技术有限公司 - 专业网络技术解决方案</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 红色主题调色板 */
+        :root {
+            --primary-red: #e53935;      /* 主红色 */
+            --dark-red: #c62828;         /* 深红色 */
+            --light-red: #ff5252;        /* 浅红色 */
+            --accent-orange: #ff7043;    /* 强调橙色 */
+            --dark-bg: #1a1a1a;          /* 深色背景 */
+            --light-bg: #f5f5f5;         /* 浅色背景 */
+            --text-dark: #333;           /* 深色文本 */
+            --text-light: #666;          /* 浅色文本 */
+        }
+        
+        /* 头部样式 */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-left: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary-red);
+        }
+        
+        nav a.active {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-red);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+        
+        /* 横幅区域 - 完全移除红色覆盖层 */
+        .banner {
+            background: url('images/banner-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white; /* 保持白色文字，适用于深色背景图 */
+            padding: 160px 0 100px;
+            margin-top: 70px;
+            text-align: center;
+            position: relative;
+        }
+        
+        /* 如果背景图较亮，需要深色文字，可以添加以下样式 */
+        /* 注意：根据您的背景图实际情况选择是否启用 */
+        /*
+        .banner {
+            color: var(--text-dark); 
+        }
+        
+        .banner h1 {
+            color: var(--primary-red);
+        }
+        */
+        
+        .banner h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* 添加文字阴影，增强可读性 */
+        }
+        
+        .banner p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 添加文字阴影，增强可读性 */
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-red);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 添加按钮阴影 */
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-red);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 内容区域 */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-orange);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* 服务区域 */
+        .services {
+            background-color: #fff;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: #fef5f5;
+            border-radius: 8px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            border-top: 4px solid var(--primary-red);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(229, 57, 53, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 40px;
+            color: var(--primary-red);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        
+        /* 关于我们 */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* 产品展示 */
+        .products {
+            background-color: #fef5f5;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(229, 57, 53, 0.1);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+        
+        /* 新闻动态 */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .news-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(229, 57, 53, 0.1);
+        }
+        
+        .news-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .news-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-date {
+            color: var(--primary-red);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .news-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+        
+        .news-content p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* 合作伙伴 */
+        .partners {
+            background-color: #fef5f5;
+        }
+        
+        .partners-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .partner-logo {
+            width: 150px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: white;
+            padding: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .partner-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(229, 57, 53, 0.1);
+        }
+        
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 70px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #fff;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-red);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-red);
+        }
+        
+        .contact-info {
+            color: #bbb;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary-red);
+            width: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-red);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                margin: 0 0 15px 0;
+            }
+            
+            .banner h1 {
+                font-size: 32px;
+            }
+            
+            .banner p {
+                font-size: 16px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+        
+        /* 自定义红色主题按钮变体 */
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white; /* 改为白色边框，更适合深色背景 */
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-red);
+        }
+        
+        /* 如果背景图较亮，需要调整轮廓按钮颜色 */
+        /*
+        .btn-outline {
+            border: 2px solid var(--primary-red);
+            color: var(--primary-red);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-red);
+            color: white;
+        }
+        */
+        
+        /* 统计数据区域 */
+        .stats {
+            background-color: var(--primary-red);
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .stat-item p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        /* 联系方式卡片 */
+        .contact-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            border-left: 5px solid var(--primary-red);
+        }
+        
+        .contact-card h3 {
+            color: var(--primary-red);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item i {
+            color: var(--primary-red);
+            margin-right: 15px;
+            font-size: 20px;
+            margin-top: 3px;
+        }
+        
+        .contact-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <!-- 您的红色logo图片 -->
+                <img src="images/logo-red.png" alt="上海沪嘉讯网络技术有限公司" class="logo-img">
+                <div class="logo-text">沪嘉讯网络</div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" class="active">首页</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#services">服务领域</a></li>
+                    <li><a href="#products">解决方案</a></li>
+                    <li><a href="#news">新闻动态</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 横幅区域 -->
+    <section class="banner" id="home">
+        <div class="container">
+            <h1>上海沪嘉讯网络技术有限公司</h1>
+            <p>专业化基础设施建设与数字化转型的综合性IT服务提供商，致力于为企业提供高效、安全、可靠的技术服务。我们拥有丰富的行业经验和专业技术团队，服务众多知名企业。</p>
+            <a href="#contact" class="btn">联系我们</a>
+            <a href="#about" class="btn btn-outline" style="margin-left: 15px;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 统计数据 -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>20+</h3>
+                    <p>行业经验</p>
+                </div>
+                <div class="stat-item">
+                    <h3>300+</h3>
+                    <p>企业客户</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100+</h3>
+                    <p>专业团队</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>技术支持</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务领域 -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>我们的服务</h2>
+                <p>提供全方位的IT信息技术解决方案，助力企业数字化转型</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>网络架构设计</h3>
+                    <p>提供企业级网络架构设计与优化，包括局域网、广域网、数据中心网络等整体解决方案。</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>网络安全服务</h3>
+                    <p>提供全面的网络安全解决方案，包括防火墙部署、入侵检测、安全审计和应急响应服务。</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>云网络解决方案</h3>
+                    <p>提供混合云、多云环境下的网络连接与优化，确保云上业务高效稳定运行。</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>无线网络部署</h3>
+                    <p>专业的企业级无线网络规划、部署与优化，提供高密度、高可靠的无线覆盖解决方案。</p>
+                </div>
+				
+				<div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>无线网络部署</h3>
+                    <p>专业的企业级无线网络规划、部署与优化，提供高密度、高可靠的无线覆盖解决方案。</p>
+                </div>
+				
+				<div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>无线网络部署</h3>
+                    <p>专业的企业级无线网络规划、部署与优化，提供高密度、高可靠的无线覆盖解决方案。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>关于我们</h2>
+                <p>上海沪嘉讯网络技术有限公司，专业计算机系统集成服务方案服务商</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>公司简介</h3>
+                    <p>上海沪嘉讯网络技术有限公司成立于2003年，是一家专注于企业信息化基础设施建设与数字化转型的综合性IT服务提供商。二十余年来，公司深耕网络技术领域，致力于为金融、制造等行业客户提供从硬件采购、系统集成到技术咨询的一站式解决方案。</p>
+                    <p>公司业务涵盖网络设备、存储设备、服务器及安全产品的销售与运维，同时提供云计算架构设计、数据 center 建设、网络安防部署等专业技术服务。凭借与Avaya、NICE、华为、思科等国内外知名厂商的紧密合作，沪嘉讯能够为客户提供高性价比的产品组合与定制化的集成方案。</p>
+                    <p>沪嘉讯始终坚持"技术驱动、服务为本"的经营理念，建立了完善的售前咨询、售中实施与售后支持体系。公司拥有一支经验丰富的技术团队，能够快速响应客户需求，确保项目高质量交付。多年来，公司服务了众多知名企业客户，积累了丰富的行业经验与良好的市场口碑。</p>
+					<p>面向未来，沪嘉讯将持续关注IT技术发展趋势，不断提升服务能力，致力于成为客户最信赖的数字化转型合作伙伴。</p>
+                    <a href="#contact" class="btn">联系我们</a>
+                </div>
+                
+                <div class="about-image">
+                    <!-- 替换为您的关于我们图片 -->
+                    <img src="images/about-us.jpg" alt="关于上海沪嘉讯网络技术有限公司">
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <h3>公司信息</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>公司地址</strong>
+                            <p>上海市闵行区古北路1699号1817室</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>联系电话</strong>
+                            <p>400-078-9089</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>联系邮箱</strong>
+                            <p>joey_z@jads.com.cn</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>工作时间</strong>
+                            <p>周一至周五 9:00-18:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品展示改为解决方案 -->
+    <section class="section products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>解决方案</h2>
+                <p>我们为不同行业提供定制化的网络技术解决方案</p>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- 替换为您的解决方案图片1 -->
+                        <img src="images/solution-1.jpg" alt="企业网络整体解决方案">
+                    </div>
+                    <div class="product-info">
+                        <h3>企业网络整体解决方案</h3>
+                        <p>为企业提供从规划、设计、实施到运维的一站式网络整体解决方案。</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- 替换为您的解决方案图片2 -->
+                        <img src="images/solution-2.jpg" alt="数据中心网络解决方案">
+                    </div>
+                    <div class="product-info">
+                        <h3>数据中心网络解决方案</h3>
+                        <p>提供高性能、高可用的数据中心网络架构设计与实施服务。</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- 替换为您的解决方案图片3 -->
+                        <img src="images/solution-3.jpg" alt="网络安全防护方案">
+                    </div>
+                    <div class="product-info">
+                        <h3>网络安全防护方案</h3>
+                        <p>多层次、全方位的网络安全防护体系，保障企业信息系统安全。</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- 替换为您的解决方案图片4 -->
+                        <img src="images/solution-4.jpg" alt="无线网络覆盖方案">
+                    </div>
+                    <div class="product-info">
+                        <h3>无线网络覆盖方案</h3>
+                        <p>针对不同场景的无线网络覆盖解决方案，确保无线网络稳定可靠。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 新闻动态 -->
+    <section class="section" id="news">
+        <div class="container">
+            <div class="section-title">
+                <h2>新闻动态</h2>
+                <p>了解公司最新动态和行业资讯</p>
+            </div>
+            
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-img">
+                        <!-- 替换为您的新闻图片1 -->
+                        <img src="images/news-award.jpg" alt="沪嘉讯网络荣获优秀服务商奖">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">2023-11-15</span>
+                        <h3>沪嘉讯网络荣获"优秀网络服务商"奖项</h3>
+                        <p>在2023年度网络技术服务评选中，上海沪嘉讯网络技术有限公司凭借卓越的服务品质荣获"优秀网络服务商"称号。</p>
+                        <a href="#" class="read-more">阅读更多 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-img">
+                        <!-- 替换为您的新闻图片2 -->
+                        <img src="images/news-conference.jpg" alt="新技术发布会成功举行">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">2023-10-20</span>
+                        <h3>新一代SD-WAN解决方案发布会成功举行</h3>
+                        <p>上海沪嘉讯网络技术有限公司于10月20日成功举办新一代SD-WAN解决方案发布会，吸引了众多企业客户和行业专家参加。</p>
+                        <a href="#" class="read-more">阅读更多 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-img">
+                        <!-- 替换为您的新闻图片3 -->
+                        <img src="images/news-partnership.jpg" alt="与知名企业建立合作">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">2023-09-05</span>
+                        <h3>与多家知名企业建立战略合作关系</h3>
+                        <p>上海沪嘉讯网络技术有限公司近期与多家知名企业达成战略合作，共同推进企业网络数字化转型。</p>
+                        <a href="#" class="read-more">阅读更多 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 合作伙伴 -->
+    <section class="section partners">
+        <div class="container">
+            <div class="section-title">
+                <h2>合作伙伴</h2>
+                <p>我们与多家行业领先企业建立了长期合作关系</p>
+            </div>
+            
+            <div class="partners-grid">
+                <div class="partner-logo">
+                    <!-- 替换为合作伙伴1的logo -->
+                    <img src="images/partner-1.png" alt="华为">
+                </div>
+                <div class="partner-logo">
+                    <!-- 替换为合作伙伴2的logo -->
+                    <img src="images/partner-2.png" alt="思科">
+                </div>
+                <div class="partner-logo">
+                    <!-- 替换为合作伙伴3的logo -->
+                    <img src="images/partner-3.png" alt="H3C">
+                </div>
+                <div class="partner-logo">
+                    <!-- 替换为合作伙伴4的logo -->
+                    <img src="images/partner-4.png" alt="阿里云">
+                </div>
+                <div class="partner-logo">
+                    <!-- 替换为合作伙伴5的logo -->
+                    <img src="images/partner-5.png" alt="腾讯云">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <a href="#" class="logo" style="justify-content: flex-start; margin-bottom: 20px;">
+                        <img src="images/logo-red.png" alt="上海沪嘉讯网络技术有限公司" class="logo-img" style="height: 40px;">
+                        <div class="logo-text" style="font-size: 18px; margin-left: 8px;">沪嘉讯网络</div>
+                    </a>
+                    <p style="color: #bbb; margin-bottom: 20px;">上海沪嘉讯网络技术有限公司，专业网络技术解决方案提供商，致力于为企业提供高效、安全、可靠的网络技术服务。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="mailto:joey_z@jads.com.cn"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#services">服务领域</a></li>
+                        <li><a href="#products">解决方案</a></li>
+                        <li><a href="#news">新闻动态</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 上海市闵行区古北路1699号1817室</p>
+                        <p><i class="fas fa-phone"></i> 400-078-9089</p>
+                        <p><i class="fas fa-envelope"></i> joey_z@jads.com.cn</p>
+                        <p><i class="fas fa-clock"></i> 周一至周五 9:00-18:00</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>Copyright &copy; 2023 上海沪嘉讯网络技术有限公司 版权所有 | 沪ICP备12345678号</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            if (mainNav.classList.contains('active')) {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // 如果是移动端，点击后关闭菜单
+                    if (window.innerWidth <= 768) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 导航栏高亮
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // 页面加载时高亮当前部分
+        window.dispatchEvent(new Event('scroll'));
+        
+        // 简单的计数器动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const statNumbers = document.querySelectorAll('.stat-item h3');
+            statNumbers.forEach(stat => {
+                const text = stat.textContent;
+                if (text.includes('+')) {
+                    const finalValue = parseInt(text);
+                    let currentValue = 0;
+                    const increment = finalValue / 50;
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if(currentValue >= finalValue) {
+                            currentValue = finalValue;
+                            clearInterval(timer);
+                        }
+                        stat.textContent = Math.floor(currentValue) + '+';
+                    }, 30);
+                } else if (text === '24/7') {
+                    // 对于24/7，我们不做动画
+                    return;
+                }
+            });
+        });
+        
+        // 根据背景图亮度调整文字颜色
+        document.addEventListener('DOMContentLoaded', function() {
+            // 如果背景图较亮，自动调整为深色文字
+            // 您可以根据实际效果手动启用/禁用
+            /*
+            const banner = document.querySelector('.banner');
+            banner.style.color = '#333';
+            banner.querySelector('h1').style.color = 'var(--primary-red)';
+            
+            // 调整轮廓按钮
+            const outlineBtn = document.querySelector('.btn-outline');
+            outlineBtn.style.borderColor = 'var(--primary-red)';
+            outlineBtn.style.color = 'var(--primary-red)';
+            */
+        });
+    </script>
+</body>
+</html>
